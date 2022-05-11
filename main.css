@@ -1,6 +1,6 @@
 body{
   min-height: 900px;
-  padding: 85px 0;
+  padding: 0;
 }
 
 h2{
@@ -23,4 +23,21 @@ h2{
 .flexG{
   display: flex;
   justify-content: space-evenly;
+}
+
+/* NAV BAR */
+.flexNF{
+  display: flex;
+  gap: 10px;
+  padding-top: 6px;
+  padding-right: 15px;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px !important;
+}
+
+.navButton{
+  padding-right: 10px !important;
+  padding-left: 10px !important;
 }
