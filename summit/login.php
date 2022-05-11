@@ -1,6 +1,6 @@
 <?php
   session_start();
-  
+
   $emailH = $passwordH = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailH=$_POST["emailH"];
@@ -26,7 +26,6 @@
           }
 
             if($passwordG == $passwordH){
-              session_start();
                $_SESSION["nombre"] = $nombreG;
                $_SESSION["email"] = $emailG;
                $_SESSION["nacimiento"] = $nacimientoG;
@@ -43,5 +42,5 @@
   }
 
   header("Location: /desarolloWeb/index.php");
-  exit();
+  // exit();
 ?>

@@ -41,3 +41,7 @@ h2{
   padding-right: 10px !important;
   padding-left: 10px !important;
 }
+
+.navbar {
+    margin-bottom: 0px !important;
+}
