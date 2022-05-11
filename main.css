@@ -1,0 +1,26 @@
+body{
+  min-height: 900px;
+  padding: 85px 0;
+}
+
+h2{
+  padding: 20px 0;
+}
+
+.vertical-offset-100{
+    padding-top:100px;
+}
+
+.btr{
+  position: relative;
+  left: 75%;
+}
+
+.carousel-inner>.item {
+  height: 450px !important;
+}
+
+.flexG{
+  display: flex;
+  justify-content: space-evenly;
+}
