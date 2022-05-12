@@ -48,36 +48,9 @@
             </tbody>
             </table>
           </div>
-          <form accept-charset="UTF-8" role="form" action="carrito.php" method="post">
-            <input id="recolector" type='hidden' id='juegoscomprados' name='comprarjuego' value=''>
-            <input class="btn btn-primary" style="position: absolute;right: 25px;margin-top: 20px;" type="submit" value="Comprar">
-          </form>
       </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-var creareventosplus=document.querySelectorAll('.checkboxsel');
-var y = document.querySelectorAll('#recolector')[0];
-
-for(let i=0; i<creareventosplus.length; i++){
-  creareventosplus[i].addEventListener("click", function(){
-    addToHidden();
-  });
-}
-
-function addToHidden(){
-  var newValue="";
-  for(let i=0; i<creareventosplus.length; i++){
-    if(creareventosplus[i].checked){
-      newValue+=creareventosplus[i].value;
-      if(i!=creareventosplus.length-1){
-        newValue+=",";
-      }
-    }
-  }
-  y.value=newValue;
-}
-</script>
 <?php include './include/footer.php';?>

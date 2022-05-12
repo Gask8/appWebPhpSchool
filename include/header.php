@@ -2,6 +2,7 @@
 session_start();
 $idS = session_status();
 ?>
+<!-- https://getbootstrap.com/docs/3.3/components/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
