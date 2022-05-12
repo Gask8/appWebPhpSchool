@@ -22,12 +22,13 @@ $idS = session_status();
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/desarolloWeb"><img src="./img/gamego.png" alt="logo" width="100"></a>
+      <a class="navbar-brand" href="/desarolloWeb"><img src="./img/gamego.png" alt="logo" width="60"></a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/desarolloWeb">Home</a></li>
       <li><a href="tienda.php">Tienda</a></li>
-      <li><a href="carrito.php">Tienda</a></li>
+      <li><a href="carrito.php">Carrito</a></li>
+      <li><a href="historial.php">Compras</a></li>
       <li><a href="about.php">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

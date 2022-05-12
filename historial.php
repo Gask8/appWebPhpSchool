@@ -1,39 +1,6 @@
 <?php include './include/header.php';?>
 
 <?php
-  $juego = "";
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if( isset($_SESSION['uid']) ){
-        $juegoid=$_POST["juego"];
-        $userid=$_SESSION["uid"];
-
-        $con=mysqli_connect("localhost","root","","proyectofinal");
-
-        // Check connection
-        if (mysqli_connect_errno()) {
-          echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-
-        mysqli_query($con,"INSERT INTO carrito (`id_usuario`, `id_producto`)
-        VALUES ('$userid','$juegoid')");
-
-        echo "<div class='alert alert-success' style='text-align: center;'>
-        <strong>Exito!</strong> Se ha añadido el juego a tu carrito.
-        <a class='btn btn-primary' href='carrito.php'>Ir a Carrito</a>
-        </div>";
-
-        mysqli_close($con);
-  } else {
-    echo "<div class='alert alert-danger' style='text-align: center;'>
-    <strong>Error!</strong> Debes estar registrado.
-    <a class='btn btn-primary' href='signUp.php'>Registrarte</a>
-    </div>";
-  }
-}
-?>
-
-
-<?php
   $con=mysqli_connect("localhost","root","","proyectofinal");
 
   // Check connection
@@ -41,7 +8,7 @@
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $result = mysqli_query($con,"SELECT * FROM productos;");
+  $result = mysqli_query($con,"SELECT * FROM usuarios u, compra c, productos p WHERE c.id_usuario = u.id AND c.id_producto = p.id");
 
   mysqli_close($con);
 
@@ -55,40 +22,62 @@
             <h3 class="panel-title">Toda la Informacion</h3>
         </div>
           <div class="panel-body">
-            <form accept-charset="UTF-8" role="form" action="tienda.php" method="post">
             <table class="table">
               <thead class="thead-dark">
             <tr>
-            <th scope="col"></th>
             <th scope="col">Foto</th>
             <th scope="col">Nombre</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Plataforma</th>
             <th scope="col">Precio</th>
-            <th scope="col">Stock</th>
+            <th scope="col">Fecha de Compra</th>
             </tr>
              </thead>
              <tbody>
             <?php while($row = mysqli_fetch_array($result)) {
               $urlimg = "./img/covers/".$row['fotos'];
               echo "<tr>";
-              echo "<th><input type='radio' id='juego".$row['id']."' name='juego' value='".$row['id']."'></th>";
               echo "<th><img src='".$urlimg."' alt='juego' width='100' height='120'></th>";
               echo "<th>".$row['nombre']."</th>";
               echo "<th>".$row['descripcion']." - ".$row['fabricante']."</th>";
               echo "<th>".$row['origen']."</th>";
               echo "<th>".$row['precio']."$</th>";
-              echo "<th>".$row['noalmacen']."</th>";
+              echo "<th>".$row['date']."</th>";
               echo "</tr>";
             } ?>
             </tbody>
             </table>
           </div>
-          <input class="btn btn-primary" style="position: absolute;right: 25px;margin-top: 20px;" type="submit" value="Añadir al Carrito">
+          <form accept-charset="UTF-8" role="form" action="carrito.php" method="post">
+            <input id="recolector" type='hidden' id='juegoscomprados' name='comprarjuego' value=''>
+            <input class="btn btn-primary" style="position: absolute;right: 25px;margin-top: 20px;" type="submit" value="Comprar">
           </form>
       </div>
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
+var creareventosplus=document.querySelectorAll('.checkboxsel');
+var y = document.querySelectorAll('#recolector')[0];
+
+for(let i=0; i<creareventosplus.length; i++){
+  creareventosplus[i].addEventListener("click", function(){
+    addToHidden();
+  });
+}
+
+function addToHidden(){
+  var newValue="";
+  for(let i=0; i<creareventosplus.length; i++){
+    if(creareventosplus[i].checked){
+      newValue+=creareventosplus[i].value;
+      if(i!=creareventosplus.length-1){
+        newValue+=",";
+      }
+    }
+  }
+  y.value=newValue;
+}
+</script>
 <?php include './include/footer.php';?>

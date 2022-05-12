@@ -18,18 +18,16 @@
 
           mysqli_query($con,"INSERT INTO usuarios (nombre, email, password, nacimiento, postal)
           VALUES ('$nombre', '$email', '$password', '$nacimiento', '$postal')");
-          echo "
-          <div class='alert alert-success' style='text-align: center;'>
+          echo "<div class='alert alert-success' style='text-align: center;'>
           <strong>Exito!</strong> Se ha registrado el usuario en la base de datos.
-          </div>
-          ";
+          </div>";
           mysqli_close($con);
     }
   ?>
 
   <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
   <div class="container">
-      <div class="row vertical-offset-40">
+      <div class="row vertical-offset-100">
       	<div class="col-md-8 col-md-offset-2">
       		<div class="panel panel-default">
   			  	<div class="panel-heading">

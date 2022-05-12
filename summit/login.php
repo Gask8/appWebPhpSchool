@@ -1,7 +1,6 @@
 <?php
   session_start();
 
-  $emailH = $passwordH = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailH=$_POST["emailH"];
         $passwordH=$_POST["passwordH"];
@@ -17,6 +16,7 @@
 
         if($result) {
           while($row = mysqli_fetch_assoc($result)) {
+            $uidG=$row["id"];
             $nombreG=$row["nombre"];
             $emailG=$row["email"];
             $passwordG=$row["password"];
@@ -26,6 +26,7 @@
           }
 
             if($passwordG == $passwordH){
+               $_SESSION["uid"] = $uidG;
                $_SESSION["nombre"] = $nombreG;
                $_SESSION["email"] = $emailG;
                $_SESSION["nacimiento"] = $nacimientoG;
@@ -42,5 +43,4 @@
   }
 
   header("Location: /desarolloWeb/index.php");
-  // exit();
 ?>
