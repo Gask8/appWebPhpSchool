@@ -1,6 +1,7 @@
 <?php include './include/header.php';?>
 
 <?php
+  $useridq=$_SESSION["uid"];
   $con=mysqli_connect("localhost","root","","proyectofinal");
 
   // Check connection
@@ -8,7 +9,7 @@
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $result = mysqli_query($con,"SELECT * FROM usuarios u, compra c, productos p WHERE c.id_usuario = u.id AND c.id_producto = p.id");
+  $result = mysqli_query($con,"SELECT * FROM usuarios u, compra c, productos p WHERE c.id_usuario = u.id AND c.id_producto = p.id AND c.id_usuario = $useridq");
 
   mysqli_close($con);
 
@@ -35,7 +36,11 @@
              </thead>
              <tbody>
             <?php while($row = mysqli_fetch_array($result)) {
-              $urlimg = "./img/covers/".$row['fotos'];
+              if(strpos($row['fotos'], "http") !== false){
+                  $urlimg = $row['fotos'];
+              } else{
+                  $urlimg = "/desarolloWeb/img/covers/".$row['fotos'];
+              }
               echo "<tr>";
               echo "<th><img src='".$urlimg."' alt='juego' width='100' height='120'></th>";
               echo "<th>".$row['nombre']."</th>";

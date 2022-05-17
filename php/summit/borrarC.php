@@ -19,5 +19,5 @@
   }
 }
 
-  header("Location: /desarolloWeb/carrito.php");
+  header("Location: /desarolloWeb/php/carrito.php");
 ?>

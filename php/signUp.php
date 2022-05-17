@@ -20,6 +20,11 @@
           VALUES ('$nombre', '$email', '$password', '$nacimiento', '$postal')");
           echo "<div class='alert alert-success' style='text-align: center;'>
           <strong>Exito!</strong> Se ha registrado el usuario en la base de datos.
+          <form accept-charset='UTF-8' role='form' action='/desarolloWeb/php/summit/login.php' method='post'>
+          <input name='emailH' type='hidden' value='".$email."'>
+          <input name='passwordH' type='hidden' value='".$password."'>
+          <button class='btn btn-primary'><span class='glyphicon glyphicon-log-in'></span>Login</button>
+          </form>
           </div>";
           mysqli_close($con);
     }

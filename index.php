@@ -1,4 +1,4 @@
-<?php include './include/header.php';?>
+<?php include './php/include/header.php';?>
   <link rel="stylesheet" href="./css/paralaje.css">
   <div class="bgimg-1">
     <div class="caption">
@@ -57,14 +57,4 @@
     </div>
   </div>
 
-  <!-- <div class="container">
-    <div class="row vertical-offset-100">
-      <div class="col-md-4 col-md-offset-4">
-        <h1>Inicio</h1>
-  		</div>
-  	</div>
-  </div> -->
-
-  <!-- <a class="btr" href="read.php"><button type="button" class="btn btn-primary">Ver Registros</button></a> -->
-
-<?php include './include/footer.php';?>
+<?php include './php/include/footer.php';?>

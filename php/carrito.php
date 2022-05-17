@@ -23,7 +23,7 @@
 
         echo "<div class='alert alert-success' style='text-align: center;'>
         <strong>Exito!</strong> has comprado juegos!.
-        <a class='btn btn-primary' href='historial.php'>Ir a Historial</a>
+        <a class='btn btn-primary' href='compras.php'>Ir a tu Historial</a>
         </div>";
 
         mysqli_close($con);
@@ -38,6 +38,8 @@
 
 
 <?php
+  $useridq=$_SESSION["uid"];
+
   $con=mysqli_connect("localhost","root","","proyectofinal");
 
   // Check connection
@@ -45,7 +47,7 @@
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $result = mysqli_query($con,"SELECT * FROM usuarios u, carrito c, productos p WHERE c.id_usuario = u.id AND c.id_producto = p.id");
+  $result = mysqli_query($con,"SELECT * FROM usuarios u, carrito c, productos p WHERE c.id_usuario = u.id AND c.id_producto = p.id AND c.id_usuario = $useridq");
 
   mysqli_close($con);
 
@@ -74,7 +76,11 @@
              </thead>
              <tbody>
             <?php while($row = mysqli_fetch_array($result)) {
-              $urlimg = "./img/covers/".$row['fotos'];
+              if(strpos($row['fotos'], "http") !== false){
+                  $urlimg = $row['fotos'];
+              } else{
+                  $urlimg = "/desarolloWeb/img/covers/".$row['fotos'];
+              }
               echo "<tr>";
               echo "<th><input class='checkboxsel' type='checkbox' id='juego".$row['id_producto']."' name='juego".$row['id_producto']."' value='".$row['id_producto']."'></th>";
               echo "<th><img src='".$urlimg."' alt='juego' width='100' height='120'></th>";
@@ -83,7 +89,7 @@
               echo "<th>".$row['origen']."</th>";
               echo "<th>".$row['precio']."$</th>";
               echo "<th>".$row['noalmacen']."</th>";
-              echo "<th><form accept-charset='UTF-8' role='form' action='./summit/borrarC.php' method='post'><input type='hidden' id='borrarjuego".$row['id_producto']."' name='borrarjuego' value='".$row['id_producto']."'><button class='btn btn-danger navButton'><span class='glyphicon glyphicon-remove-circle'></span></button></form></th>";
+              echo "<th><form accept-charset='UTF-8' role='form' action='/desarolloWeb/php/summit/borrarC.php' method='post'><input type='hidden' id='borrarjuego".$row['id_producto']."' name='borrarjuego' value='".$row['id_producto']."'><button class='btn btn-danger navButton'><span class='glyphicon glyphicon-remove-circle'></span></button></form></th>";
               echo "</tr>";
             } ?>
             </tbody>
@@ -98,27 +104,5 @@
   </div>
 </div>
 
-<script type="text/javascript">
-var creareventosplus=document.querySelectorAll('.checkboxsel');
-var y = document.querySelectorAll('#recolector')[0];
-
-for(let i=0; i<creareventosplus.length; i++){
-  creareventosplus[i].addEventListener("click", function(){
-    addToHidden();
-  });
-}
-
-function addToHidden(){
-  var newValue="";
-  for(let i=0; i<creareventosplus.length; i++){
-    if(creareventosplus[i].checked){
-      newValue+=creareventosplus[i].value;
-      if(i!=creareventosplus.length-1){
-        newValue+=",";
-      }
-    }
-  }
-  y.value=newValue;
-}
-</script>
+<script type="text/javascript" src="/desarolloWeb/js/check.js"></script>
 <?php include './include/footer.php';?>
