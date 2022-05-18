@@ -31,15 +31,15 @@
   ?>
 
   <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
-  <div class="container">
-      <div class="row vertical-offset-100">
+  <div class="container" style="min-height: 600px;">
+      <div class="row vertical-offset-100" style="margin-bottom: 100px">
       	<div class="col-md-8 col-md-offset-2">
       		<div class="panel panel-default">
   			  	<div class="panel-heading">
   			    	<h3 class="panel-title">Ingresar Informacion</h3>
   			 	  </div>
   			  	<div class="panel-body">
-  			    	<form accept-charset="UTF-8" role="form" action="signUp.php" method="post">
+  			    	<form accept-charset="UTF-8" role="form" action="signUp.php" method="post" onsubmit="return validar();">
                       <fieldset>
   			    	  <div class="form-group col-md-6">
                     <p>Nombre y Apellido</p>
@@ -74,4 +74,16 @@
   	</div>
   </div>
 
+<script type="text/javascript">
+function validar(){
+  x = document.querySelectorAll("input");
+
+  if(x[4].value==x[5].value){
+    return true;
+  } else {
+    alert("Las Contraseñas no son las mismas");
+  }
+  return false;
+}
+</script>
 <?php include './include/footer.php';?>

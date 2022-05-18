@@ -26,11 +26,11 @@
 ?>
 
 <div class="container">
-    <div class="row vertical-offset-100">
+    <div class="row vertical-offset-100" style="margin-bottom: 100px">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Ingresar Informacion</h3>
+            <h3 class="panel-title">Ingresar un juego al Catalogo</h3>
           </div>
           <div class="panel-body">
             <form accept-charset="UTF-8" role="form" action="add.php" method="post">

@@ -1,5 +1,14 @@
 <?php include './include/header.php';?>
 
+<style media="screen">
+body {
+  font-family: Arial, sans-serif;
+  background: url(https://wallpaperaccess.com/full/242332.jpg) no-repeat;
+  background-size: cover;
+}
+</style>
+
+
 <?php
   $juego = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -53,8 +62,9 @@
 
 ?>
 
-<div class="container">
-    <div class="row vertical-offset-100">
+<div class="container" style="min-height: 600px;">
+  <h2 style="color: white">CARRITO</h2>
+    <div class="row vertical-offset-50" style="margin-bottom: 100px">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -95,7 +105,8 @@
             </tbody>
             </table>
           </div>
-          <form accept-charset="UTF-8" role="form" action="carrito.php" method="post">
+
+          <form accept-charset="UTF-8" role="form" action="carrito.php" method="post" onsubmit="return validar();">
             <input id="recolector" type='hidden' id='juegoscomprados' name='comprarjuego' value=''>
             <input class="btn btn-primary" style="position: absolute;right: 25px;margin-top: 20px;" type="submit" value="Comprar">
           </form>
@@ -104,5 +115,16 @@
   </div>
 </div>
 
+<script type="text/javascript">
+function validar(){
+  x = document.querySelectorAll("#recolector");
+  if(x[0].value!=""){
+    return true;
+  } else {
+    alert("Selecciones un item");
+  }
+  return false;
+}
+</script>
 <script type="text/javascript" src="/desarolloWeb/js/check.js"></script>
 <?php include './include/footer.php';?>

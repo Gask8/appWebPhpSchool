@@ -1,5 +1,13 @@
 <?php include './include/header.php';?>
 
+<style media="screen">
+body {
+  font-family: Arial, sans-serif;
+  background: url(https://cdn.dribbble.com/users/673549/screenshots/3159371/videogamecontroller_background.jpg) no-repeat;
+  background-size: cover;
+}
+</style>
+
 <?php
   $useridq=$_SESSION["uid"];
   $con=mysqli_connect("localhost","root","","proyectofinal");
@@ -15,8 +23,9 @@
 
 ?>
 
-<div class="container">
-    <div class="row vertical-offset-100">
+<div class="container" style="min-height: 600px;">
+  <h2 style="color: white">COMPRAS</h2>
+    <div class="row vertical-offset-50" style="margin-bottom: 100px">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">

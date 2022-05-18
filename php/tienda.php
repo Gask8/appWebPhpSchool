@@ -33,72 +33,104 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-
 <?php
   $con=mysqli_connect("localhost","root","","proyectofinal");
-
   // Check connection
   if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-
   $result = mysqli_query($con,"SELECT * FROM productos;");
-
   mysqli_close($con);
 
 ?>
-
-
+<link rel="stylesheet" href="/desarolloWeb/css/flex.css">
 
 <div class="container">
-    <div class="row vertical-offset-100">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Toda la Informacion</h3>
-        </div>
-          <div class="panel-body">
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                <th scope="col"></th>
-                <th scope="col">Foto</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Plataforma</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Stock</th>
-                </tr>
-             </thead>
-             <tbody>
-            <?php while($row = mysqli_fetch_array($result)) {
-              if(strpos($row['fotos'], "http") !== false){
-                  $urlimg = $row['fotos'];
-              } else{
-                  $urlimg = "/desarolloWeb/img/covers/".$row['fotos'];
-              }
-              echo "<tr>";
-              echo "<th><input class='checkboxsel' type='checkbox' id='juego".$row['id']."' name='juego".$row['id']."' value='".$row['id']."'></th>";
-              echo "<th><img src='".$urlimg."' alt='juego' width='100' height='120'></th>";
-              echo "<th>".$row['nombre']."</th>";
-              echo "<th>".$row['descripcion']." - ".$row['fabricante']."</th>";
-              echo "<th>".$row['origen']."</th>";
-              echo "<th>".$row['precio']."$</th>";
-              echo "<th>".$row['noalmacen']."</th>";
-              echo "</tr>";
-            } ?>
-            </tbody>
-            </table>
-          </div>
-          <form accept-charset="UTF-8" role="form" action="tienda.php" method="post">
-            <input id="recolector" type='hidden' id='juego' name='juego' value=''>
-            <input class="btn btn-primary" style="position: absolute;right: 25px;margin-top: 20px;" type="submit" value="Añadir al Carrito">
-          </form>
-      </div>
-    </div>
+
+<div class="col-sm-12 centercol">
+  <h2>TIENDA</h2>
+  <div class="container flexy">
+      <?php while($row = mysqli_fetch_array($result)) {
+        if(strpos($row['fotos'], "http") !== false){
+            $urlimg = $row['fotos'];
+        } else{
+            $urlimg = "/desarolloWeb/img/covers/".$row['fotos'];
+        }
+        if($row['noalmacen']>0){
+        echo "<div class='well'>";
+          echo "<input class='checkboxsel' type='checkbox' id='juego".$row['id']."' name='juego".$row['id']."' value='".$row['id']."'>";
+          echo "<div class='innerFlex'><img src='".$urlimg."' alt='juego' width='100' height='120'><div class='innerinner'>
+          <h3>".$row['nombre']."</h3>
+          <p class='price'>Price: ".$row['precio']."$</p>";
+          if($row['noalmacen']<=10){
+              echo "<p class='soldout'>Left:".$row['noalmacen']."</p></div></div>";
+          } else {
+              echo "<p>Left:".$row['noalmacen']."</p></div></div>";
+          }
+          echo"<div class='box'>
+              <a class='button' href='#popup".$row['id']."'>Ver Info</a>
+            </div>
+            <div id='popup".$row['id']."' class='overlay'>
+              <div class='popup'>
+                <h2>".$row['nombre']."</h2>
+                <a class='close' href='#'>&times;</a>
+                <div class='content'>
+                  <b>Descripcion:</b><br>".$row['descripcion']." <hr> Desarollador: ".$row['fabricante']." <hr> Plataforma: ".$row['origen']."
+                </div>
+              </div>
+            </div>";
+        echo "</div>";
+        }
+      } ?>
+  </div>
+  <form accept-charset="UTF-8" role="form" action="tienda.php" method="post" onsubmit="return validar();">
+    <input id="recolector" type='hidden' id='juego' name='juego' value=''>
+    <input class="btn btn-primary btn-lg btnright" type="submit" value="Añadir al Carrito">
+  </form>
   </div>
 </div>
+
+<script type="text/javascript">
+var flexys=document.querySelectorAll('.well');
+
+for(let i=0; i<flexys.length; i++){
+  flexys[i].addEventListener("click", function(){
+    let x = this.querySelectorAll('input')[0]
+    if(x.checked){
+      this.classList.remove("selectedf");
+      x.checked=false;
+    } else {
+      this.classList.add("selectedf");
+      x.checked=true;
+    }
+    addToHidden();
+  });
+}
+
+function addToHidden(){
+  var newValue="";
+  for(let i=0; i<creareventosplus.length; i++){
+    if(creareventosplus[i].checked){
+      if(newValue!=""){
+        newValue+=",";
+      }
+      newValue+=creareventosplus[i].value;
+    }
+  }
+  y.value=newValue;
+}
+
+function validar(){
+  x = document.querySelectorAll("#recolector");
+  if(x[0].value!=""){
+    return true;
+  } else {
+    alert("Selecciones un item");
+  }
+  return false;
+}
+
+</script>
 
 <script type="text/javascript" src="/desarolloWeb/js/check.js"></script>
 <?php include './include/footer.php';?>

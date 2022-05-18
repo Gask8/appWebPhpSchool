@@ -16,7 +16,8 @@
 ?>
 
 <div class="container">
-    <div class="row vertical-offset-100">
+  <h2>HISTORIAL</h2>
+    <div class="row vertical-offset-50" style="margin-bottom: 100px">
       <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-heading">
