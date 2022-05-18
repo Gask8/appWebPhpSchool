@@ -8,7 +8,6 @@ body {
 }
 </style>
 
-
 <?php
   $juego = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -64,7 +63,7 @@ body {
 
 <div class="container" style="min-height: 600px;">
   <h2 style="color: white">CARRITO</h2>
-    <div class="row vertical-offset-50" style="margin-bottom: 100px">
+    <div class="row vertical-offset-50">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -105,23 +104,31 @@ body {
             </tbody>
             </table>
           </div>
-
-          <form accept-charset="UTF-8" role="form" action="carrito.php" method="post" onsubmit="return validar();">
-            <input id="recolector" type='hidden' id='juegoscomprados' name='comprarjuego' value=''>
-            <input class="btn btn-primary" style="position: absolute;right: 25px;margin-top: 20px;" type="submit" value="Comprar">
-          </form>
       </div>
     </div>
+  </div>
+  <div class="container" style="background: lightgrey;
+    padding: 50px;
+    border-radius: 25px;
+    border: 10px solid #ffffff;
+    margin-bottom: 100px;">
+    <h4>Datos de la Tarjeta de Pago<h4>
+      <form accept-charset="UTF-8" role="form" action="carrito.php" method="post" onsubmit="return validar();">
+        <input id="recolector" type='hidden' id='juegoscomprados' name='comprarjuego' value=''>
+        <input id="money" style="width: 400px;text-align: center;margin: auto;" class='form-control' type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+        <input class="btn btn-primary" style="position: absolute;right: 20%;" type="submit" value="Comprar">
+      </form>
   </div>
 </div>
 
 <script type="text/javascript">
 function validar(){
   x = document.querySelectorAll("#recolector");
-  if(x[0].value!=""){
+  y = document.querySelectorAll("#money");
+  if(x[0].value!="" && y[0].value!=""){
     return true;
   } else {
-    alert("Selecciones un item");
+    alert("Seleccione un item y la tarjeta");
   }
   return false;
 }

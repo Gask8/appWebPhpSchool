@@ -1,5 +1,13 @@
 <?php include './include/header.php';?>
 
+<style media="screen">
+body {
+  font-family: Arial, sans-serif;
+  background: url(https://cdn.dribbble.com/users/673549/screenshots/3159371/videogamecontroller_background.jpg) no-repeat;
+  background-size: cover;
+}
+</style>
+
   <?php
     $nombre = $email = $password = $postal = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

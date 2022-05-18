@@ -1,7 +1,7 @@
 <?php include './include/header.php';?>
 
 <link rel="stylesheet" href="../css/paralaje.css">
-<div class="bgimg-1">
+<div class="bgimg-3" style="min-height: 100%;">
   <div class="caption">
     <span class="border">SOBRE EL SITIO</span>
   </div>
@@ -21,7 +21,7 @@
   </p>
 </div>
 
-<div class="bgimg-2">
+<div class="bgimg-1" style="min-height: 400px;">
   <div class="caption">
     <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">
       GABRIEL SALANDRA
@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<div class="bgimg-3">
+<div class="bgimg-2">
   <div class="caption">
     <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">
       El hombre es siempre "el mismo" pero nunca "lo mismo"

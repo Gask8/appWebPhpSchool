@@ -1,4 +1,13 @@
 <?php include '../include/header.php';?>
+
+<style media="screen">
+body {
+  font-family: Arial, sans-serif;
+  background: url(https://wallpaperaccess.com/full/242332.jpg) no-repeat;
+  background-size: cover;
+}
+</style>
+
 <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombre=$_POST["nombre"];

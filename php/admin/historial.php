@@ -1,5 +1,14 @@
 <?php include '../include/header.php';?>
 
+<style media="screen">
+body {
+  font-family: Arial, sans-serif;
+  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+</style>
+
 <?php
   $useridq=$_SESSION["uid"];
   $con=mysqli_connect("localhost","root","","proyectofinal");
