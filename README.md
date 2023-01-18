@@ -1,5 +1,19 @@
-# desarolloWeb
-ProyectoFinal de materia: DesarolloWeb
+# ProyectoFinal Desarollo Web
+
+Tienda de Juegos  PHP project
+
 por Gabriel Alejandro Salandra Kuri
-technologias: PHP, MySQL
-expediente: 00381169
+
+## Tecnologia:
+
+App:
+- PHP
+- HTML, CSS, JAVASCRIPT
+- Bootstrap
+
+Server:
+- xampp
+- MariaDB
+
+Información del Autor:
+[Linkedin](https://mx.linkedin.com/in/gabriel-salandra-kuri-04a52b203/es)
